@@ -208,6 +208,17 @@
 
 
 <script src="/js/script.js" type="text/javascript"></script>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/16.2.0/countly.min.js'></script>
+	<script type='text/javascript'>
+	  //initializing countly with params
+	  Countly.init({
+	    app_key: "d942887865978dfde77c423bd39d77f699eb6b80"
+	  });
+	  //此方法将通过调用开始、扩展和结束会话的方法自动跟踪用户会话
+	  Countly.track_sessions();
+	  //此方法将通过收集当前页面的相关信息自动跟踪页面访问量
+	  Countly.track_pageview();
+	</script>
 
   </div>
 </body>
