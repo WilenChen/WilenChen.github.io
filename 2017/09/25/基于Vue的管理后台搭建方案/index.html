@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>基于Vue的管理后台搭建方案 | Duang·Duang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在这里简单介绍下如何基于vue搭建一个管理后台，并着重介绍一个完整的管理后台需要完善哪些机制以及可拓展的方向。 原料 基本框架：Vue 2.x 数据管理：Vuex 路由管理：Vue-Router 组件库：Muse UI（或者其他支持vue2的组件库） 异步请求库： Axios  工具 vue-cli  步骤1.初始化三部曲通过npm安装vue-cli，按以下步骤初始化项目： 12初始化项目$ vu">
+<meta name="keywords" content="Vue,管理后台">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Vue的管理后台搭建方案">
+<meta property="og:url" content="http://yoursite.com/2017/09/25/基于Vue的管理后台搭建方案/index.html">
+<meta property="og:site_name" content="Duang·Duang">
+<meta property="og:description" content="在这里简单介绍下如何基于vue搭建一个管理后台，并着重介绍一个完整的管理后台需要完善哪些机制以及可拓展的方向。 原料 基本框架：Vue 2.x 数据管理：Vuex 路由管理：Vue-Router 组件库：Muse UI（或者其他支持vue2的组件库） 异步请求库： Axios  工具 vue-cli  步骤1.初始化三部曲通过npm安装vue-cli，按以下步骤初始化项目： 12初始化项目$ vu">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-14T07:01:58.009Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于Vue的管理后台搭建方案">
+<meta name="twitter:description" content="在这里简单介绍下如何基于vue搭建一个管理后台，并着重介绍一个完整的管理后台需要完善哪些机制以及可拓展的方向。 原料 基本框架：Vue 2.x 数据管理：Vuex 路由管理：Vue-Router 组件库：Muse UI（或者其他支持vue2的组件库） 异步请求库： Axios  工具 vue-cli  步骤1.初始化三部曲通过npm安装vue-cli，按以下步骤初始化项目： 12初始化项目$ vu">
+  
+    <link rel="alternate" href="/atom.xml" title="Duang·Duang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Duang·Duang</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Wilen&#39;s Blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-基于Vue的管理后台搭建方案" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/25/基于Vue的管理后台搭建方案/" class="article-date">
+  <time datetime="2017-09-25T11:30:10.000Z" itemprop="datePublished">2017-09-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端技术/">前端技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基于Vue的管理后台搭建方案
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在这里简单介绍下如何基于vue搭建一个管理后台，并着重介绍一个完整的管理后台需要完善哪些机制以及可拓展的方向。</p>
+<h3 id="原料"><a href="#原料" class="headerlink" title="原料"></a>原料</h3><ul>
+<li>基本框架：Vue 2.x</li>
+<li>数据管理：Vuex</li>
+<li>路由管理：Vue-Router</li>
+<li>组件库：Muse UI（或者其他支持vue2的组件库）</li>
+<li>异步请求库： Axios</li>
+</ul>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><ul>
+<li>vue-cli</li>
+</ul>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="1-初始化三部曲"><a href="#1-初始化三部曲" class="headerlink" title="1.初始化三部曲"></a>1.初始化三部曲</h4><p>通过npm安装vue-cli，按以下步骤初始化项目：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">初始化项目</span><br><span class="line">$ vue init webpack</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">安装依赖包</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">运行项目</span><br><span class="line">$ npm run dev</span><br></pre></td></tr></table></figure>
+<h4 id="2-目录结构"><a href="#2-目录结构" class="headerlink" title="2.目录结构"></a>2.目录结构</h4><p>初始化完的项目的目录是针对vue项目的，这里给出适用于管理后台项目的建议目录如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">├── config/        					# 项目核心配置</span><br><span class="line">│ └── ...</span><br><span class="line">├── build/         					# 静态资源打包输出文件夹</span><br><span class="line">│ └── ...</span><br><span class="line">├── mock/          					# 本地 API mock 配置文件夹</span><br><span class="line">│ └── ...</span><br><span class="line">├── node_modules  					# 项目依赖包文件夹</span><br><span class="line">├─┬ src/          					# 项目源代码文件夹</span><br><span class="line">│ ├── assets /     					# 项目资源</span><br><span class="line">│ │ └── ...</span><br><span class="line">│ ├── components/  					# 项目组件</span><br><span class="line">│ │ └── ...</span><br><span class="line">│ ├── plugins/    					# 项目插件</span><br><span class="line">│ │ └── ...</span><br><span class="line">│ ├── frame/  						# 项目外框</span><br><span class="line">│ │ └── ...</span><br><span class="line">│ ├── modules/    					# 项目模块</span><br><span class="line">│ │ └── ...</span><br><span class="line">│ ├── router/    					# 项目路由</span><br><span class="line">│ │ └── ...</span><br><span class="line">│ ├── store/      					# 项目数据</span><br><span class="line">│ │ └── ...</span><br><span class="line">│ ├── common/     					# 项目公共文件</span><br><span class="line">│ │ └── ...</span><br><span class="line">│ ├── index.html  					# 项目入口模版文件</span><br><span class="line">│ └── main.js     					# 项目入口文件</span><br><span class="line">├── package.json</span><br><span class="line">└── README.md</span><br></pre></td></tr></table></figure>
+<p>*这里是否引入单元测试以及eslint视具体情况而定</p>
+<p><code>frame/</code></p>
+<p>这个目录存放的是系统外框，具体包括侧边栏、头部、底部等。把这一部分抽出来，以后可以提到框架级别，方便统一修改或者主题切换。</p>
+<p><code>modules/</code></p>
+<p>这个目录存放的是系统模块，以侧边栏的菜单入口为单位。</p>
+<h4 id="3-相关机制"><a href="#3-相关机制" class="headerlink" title="3.相关机制"></a>3.相关机制</h4><p><code>接口mock服务</code></p>
+<p>搭建接口mock服务，支持：</p>
+<ul>
+<li>本地接口mock</li>
+<li>远程接口mock</li>
+<li>对接第三方接口管理平台</li>
+</ul>
+<p><code>部署功能</code></p>
+<p>一般部署是由前端同学将项目打包，然后由后端同学部署，但是这种对接的效率并不高。这里要另外先提一下打包机制，目前的打包机制是将文件打包为<code>html文件 + 资源文件</code>，再部署到ftp服务器上。同时每次发布的时候，会有一份名为verison的json文件来记录版本信息，后端同学先获取这份json文件的版本信息，再去获取对应版本的html文件，将其部署到自己的环境，就最终完成了部署。每次前端同学有更新，只需要直接发布到ftp服务器，版本文件同时更新，后端同学就会拿到最新版本的html文件。</p>
+<p><code>权限机制</code></p>
+<p>在管理后台的业务需求种，一般会涉及到权限控制。这里我们根据管理后台的业务场景将权限分为两种：菜单权限和功能点权限。具体需要做三件事：</p>
+<ul>
+<li>与后端同学制定好权限接口包括返回的数据接口，是否能清楚地告诉你，哪个模块是不是有权限进入以及进入该模块后有哪些功能点权限</li>
+<li>框架获取到权限信息后，将权限信息传递给模块</li>
+<li>模块通过权限信息判断哪些区域是否可见或者哪些功能是否具有</li>
+</ul>
+<p><code>共享机制</code></p>
+<p>回想一下，我们一般需要开发好几个后台，是否遇到两个后台需要开发类似的功能的情况？<br>通常有三种解决方法：</p>
+<p>1.代码COPY：可能你会觉得这是速度最快的做法，直接复制之前的组件到新项目中，慢慢的你会发现，随着你项目的增加，代码量在成倍上升，后期极难维护，浪费很多时间。</p>
+<p>2.子模块：抽离所有公共组件放入一个子模块（git submodule）中，这种方法虽然解决了重复工作，但对目录结构以及使用者要求较多，不够灵活。</p>
+<p>3.通用组件库：基于私有npm库，开发一个内部通用组件库，提供全局引用和按需引用的方式。相比1解决了重复的问题，相比2更加灵活，并且可以通过版本保证稳定性。</p>
+<p><code>一系列的自动化命令</code></p>
+<p>也就是cli，之前已经用过vue-cli了，所以应该很清楚是做什么的。在管理后台的需求量越来越多的情况下，敏捷开发很有必要。具体点，初始化菜单模块的时候，你应该还是从零开始写代码吧，好吧，你说复制代码…如果只是敲一行命令，我就帮你把开发菜单模块需要的文件都创建好，并且已经写好demo代码，你喜欢么？将一些重复的事情命令化变得高效，比如一系列的自动化命令。</p>
+<h4 id="4-小结"><a href="#4-小结" class="headerlink" title="4.小结"></a>4.小结</h4><p>在各类站点及各类App飞速发展的现在，管理后台的需求无疑也是各种各样，拥有一个稳健并且支持各种拓展机制的管理后台框架很重要。从搭建到开发需求有一段时间了，慢慢积累下来一些东西，希望可以互相激励，也欢迎同学们指导。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/09/25/基于Vue的管理后台搭建方案/" data-id="cjs42ho5r0000903vpidqvna8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/管理后台/">管理后台</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/07/GitSubmodule子模块使用总结/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          GitSubmodule子模块使用总结
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端技术/">前端技术</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/App/">App</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReactNative/">ReactNative</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scss/">Scss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Submodule/">Submodule</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode编辑器/">VSCode编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Variables/">Variables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/管理后台/">管理后台</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/App/" style="font-size: 10px;">App</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/ReactNative/" style="font-size: 10px;">ReactNative</a> <a href="/tags/Scss/" style="font-size: 10px;">Scss</a> <a href="/tags/Submodule/" style="font-size: 10px;">Submodule</a> <a href="/tags/VSCode编辑器/" style="font-size: 10px;">VSCode编辑器</a> <a href="/tags/Variables/" style="font-size: 10px;">Variables</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/管理后台/" style="font-size: 10px;">管理后台</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/02/14/ReactNative-项目总结/">ReactNative-项目总结</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/03/非原生APP开发大杂烩/">非原生APP开发大杂烩</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/27/在Vue中使用Scss全局变量/">在Vue中使用Scss全局变量</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/07/GitSubmodule子模块使用总结/">GitSubmodule子模块使用总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/25/基于Vue的管理后台搭建方案/">基于Vue的管理后台搭建方案</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Wilen<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

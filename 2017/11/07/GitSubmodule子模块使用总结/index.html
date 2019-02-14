@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>GitSubmodule子模块使用总结 | Duang·Duang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="概念子模块 = Git仓库 子模块允许你将一个Git仓库作为另一个Git仓库的子目录 它能让你将另一个仓库克隆到自己的项目中，同时还保持提交的独立性 应用场景问题：解决不同Git项目下的类似甚至相同模块的开发 选项一 Npm： 优点：独立性强（可移植性强）、严格版本控制 缺点：需要独立开发环境、node_modules、打包问题 选项二 Submodule:  优点：*灵活性高、不需要独立开发环境">
+<meta name="keywords" content="Git,Submodule">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitSubmodule子模块使用总结">
+<meta property="og:url" content="http://yoursite.com/2017/11/07/GitSubmodule子模块使用总结/index.html">
+<meta property="og:site_name" content="Duang·Duang">
+<meta property="og:description" content="概念子模块 = Git仓库 子模块允许你将一个Git仓库作为另一个Git仓库的子目录 它能让你将另一个仓库克隆到自己的项目中，同时还保持提交的独立性 应用场景问题：解决不同Git项目下的类似甚至相同模块的开发 选项一 Npm： 优点：独立性强（可移植性强）、严格版本控制 缺点：需要独立开发环境、node_modules、打包问题 选项二 Submodule:  优点：*灵活性高、不需要独立开发环境">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2017/11/07/images/add1.png">
+<meta property="og:image" content="http://yoursite.com/2017/11/07/images/add2.png">
+<meta property="og:image" content="http://yoursite.com/2017/11/07/images/add3.png">
+<meta property="og:image" content="http://yoursite.com/2017/11/07/images/add4.png">
+<meta property="og:image" content="http://yoursite.com/2017/11/07/images/delete1.png">
+<meta property="og:image" content="http://yoursite.com/2017/11/07/images/delete4.png">
+<meta property="og:image" content="http://yoursite.com/2017/11/07/images/delete6.png">
+<meta property="og:image" content="http://yoursite.com/2017/11/07/images/delete5.png">
+<meta property="og:image" content="http://yoursite.com/2017/11/07/images/delete2.png">
+<meta property="og:image" content="http://yoursite.com/2017/11/07/images/delete3.png">
+<meta property="og:image" content="http://yoursite.com/2017/11/07/images/delete8.png">
+<meta property="og:image" content="http://yoursite.com/2017/11/07/images/attention1.png">
+<meta property="og:updated_time" content="2019-02-14T07:01:52.844Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GitSubmodule子模块使用总结">
+<meta name="twitter:description" content="概念子模块 = Git仓库 子模块允许你将一个Git仓库作为另一个Git仓库的子目录 它能让你将另一个仓库克隆到自己的项目中，同时还保持提交的独立性 应用场景问题：解决不同Git项目下的类似甚至相同模块的开发 选项一 Npm： 优点：独立性强（可移植性强）、严格版本控制 缺点：需要独立开发环境、node_modules、打包问题 选项二 Submodule:  优点：*灵活性高、不需要独立开发环境">
+<meta name="twitter:image" content="http://yoursite.com/2017/11/07/images/add1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Duang·Duang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Duang·Duang</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Wilen&#39;s Blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-GitSubmodule子模块使用总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/07/GitSubmodule子模块使用总结/" class="article-date">
+  <time datetime="2017-11-07T06:39:43.000Z" itemprop="datePublished">2017-11-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端技术/">前端技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      GitSubmodule子模块使用总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>子模块 = Git仓库</p>
+<p>子模块允许你将一个Git仓库作为另一个Git仓库的子目录</p>
+<p>它能让你将另一个仓库克隆到自己的项目中，同时还保持提交的独立性</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>问题：解决不同Git项目下的类似甚至相同模块的开发</p>
+<p>选项一 Npm：</p>
+<p>优点：独立性强（可移植性强）、严格版本控制</p>
+<p>缺点：需要独立开发环境、node_modules、打包问题</p>
+<p>选项二 Submodule: </p>
+<p>优点：*灵活性高、不需要独立开发环境、无需考虑打包问题</p>
+<p>缺点：*灵活性高、需要一定的操作规范</p>
+<h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><p>1.添加子模块</p>
+<p><code>$ git submodule add &lt;remote_url&gt; &lt;local_path&gt;</code></p>
+<p>2.初始化子模块</p>
+<p><code>git submodule init</code></p>
+<p>3.更新子模块</p>
+<p><code>$ git pull update</code></p>
+<p>4.删除子模块</p>
+<p><code>$ git rm -cached &lt;submodule dir&gt;</code></p>
+<p>5.遍历所有子模块</p>
+<p><code>$ git submodule foreach &#39;git xxx&#39;</code></p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>1.添加子模块<br><img src="../images/add1.png" alt=""></p>
+<p>.gitmodules<br><img src="../images/add2.png" alt=""></p>
+<p>.git/config<br><img src="../images/add3.png" alt=""></p>
+<p><img src="../images/add4.png" alt=""></p>
+<p>2.修改子模块</p>
+<p>(1)切换到子模块目录</p>
+<p>(2)进行git操作</p>
+<font color="#f90404">(3)提交 –&gt; 新的版本号</font>
+
+<font color="#f90404">(4)外层项目提交 –&gt; 子模块新的版本号</font>
+
+<p>(5)git submodule update</p>
+<p>3.删除子模块</p>
+<p>.gitmodules<br><img src="../images/delete1.png" alt=""><br><img src="../images/delete4.png" alt=""></p>
+<p>.git/config<br><img src="../images/delete6.png" alt=""><br><img src="../images/delete5.png" alt=""></p>
+<p><img src="../images/delete2.png" alt=""></p>
+<p><img src="../images/delete3.png" alt=""><br><img src="../images/delete8.png" alt=""></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>1.如果要clone一个附带submodule的项目，submodule的文件不会自动随父项目clone出来（其实只会clone出 .gitsubmodles 这个描述文件），还需要执行如下命令取出submodule里的文件：</p>
+<p><code>$ git submodule init</code></p>
+<p><code>$ git submodule update</code></p>
+<p>或者，一条组合命令（同样适用于嵌套submodule的情况）：</p>
+<p><code>$ git submodule update --init --recursive</code></p>
+<p>2.修改子模块之前，一定要用<code>git checkout master</code>将当前的子模块分支切换都master，然后才能做修改和提交。因为默认情况下，子模块的HEAD是处于游离状态的。<br><img src="../images/attention1.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/07/GitSubmodule子模块使用总结/" data-id="cjs4984qo0000hq3vlk5qmolq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Submodule/">Submodule</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/03/27/在Vue中使用Scss全局变量/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          在Vue中使用Scss全局变量
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/25/基于Vue的管理后台搭建方案/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">基于Vue的管理后台搭建方案</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端技术/">前端技术</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/App/">App</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReactNative/">ReactNative</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scss/">Scss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Submodule/">Submodule</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode编辑器/">VSCode编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Variables/">Variables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/管理后台/">管理后台</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/App/" style="font-size: 10px;">App</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/ReactNative/" style="font-size: 10px;">ReactNative</a> <a href="/tags/Scss/" style="font-size: 10px;">Scss</a> <a href="/tags/Submodule/" style="font-size: 10px;">Submodule</a> <a href="/tags/VSCode编辑器/" style="font-size: 10px;">VSCode编辑器</a> <a href="/tags/Variables/" style="font-size: 10px;">Variables</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/管理后台/" style="font-size: 10px;">管理后台</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/02/14/ReactNative-项目总结/">ReactNative-项目总结</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/03/非原生APP开发大杂烩/">非原生APP开发大杂烩</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/27/在Vue中使用Scss全局变量/">在Vue中使用Scss全局变量</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/07/GitSubmodule子模块使用总结/">GitSubmodule子模块使用总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/25/基于Vue的管理后台搭建方案/">基于Vue的管理后台搭建方案</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Wilen<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

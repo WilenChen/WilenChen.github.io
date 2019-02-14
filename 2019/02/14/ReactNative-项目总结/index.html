@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>ReactNative-项目总结 | Duang·Duang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="通过 ReactNative 输出 bundle 包集成到现有 iOS 和 Android 应用 技术准备1234567891011/** 基础库 **/- react-native（0.56.0）- react（16.4.1）- redux（4.x）- react-redux（5.x）/** 第三方库 **/- react-navigation（处理全局导航）- react-native-exc">
+<meta name="keywords" content="ReactNative,React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ReactNative-项目总结">
+<meta property="og:url" content="http://yoursite.com/2019/02/14/ReactNative-项目总结/index.html">
+<meta property="og:site_name" content="Duang·Duang">
+<meta property="og:description" content="通过 ReactNative 输出 bundle 包集成到现有 iOS 和 Android 应用 技术准备1234567891011/** 基础库 **/- react-native（0.56.0）- react（16.4.1）- redux（4.x）- react-redux（5.x）/** 第三方库 **/- react-navigation（处理全局导航）- react-native-exc">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-14T07:01:55.207Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ReactNative-项目总结">
+<meta name="twitter:description" content="通过 ReactNative 输出 bundle 包集成到现有 iOS 和 Android 应用 技术准备1234567891011/** 基础库 **/- react-native（0.56.0）- react（16.4.1）- redux（4.x）- react-redux（5.x）/** 第三方库 **/- react-navigation（处理全局导航）- react-native-exc">
+  
+    <link rel="alternate" href="/atom.xml" title="Duang·Duang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Duang·Duang</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Wilen&#39;s Blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ReactNative-项目总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/14/ReactNative-项目总结/" class="article-date">
+  <time datetime="2019-02-14T02:00:00.000Z" itemprop="datePublished">2019-02-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端技术/">前端技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ReactNative-项目总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>通过 ReactNative 输出 bundle 包集成到现有 iOS 和 Android 应用</p>
+<h2 id="技术准备"><a href="#技术准备" class="headerlink" title="技术准备"></a>技术准备</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/** 基础库 **/</span><br><span class="line">- react-native（0.56.0）</span><br><span class="line">- react（16.4.1）</span><br><span class="line">- redux（4.x）</span><br><span class="line">- react-redux（5.x）</span><br><span class="line"></span><br><span class="line">/** 第三方库 **/</span><br><span class="line">- react-navigation（处理全局导航）</span><br><span class="line">- react-native-exception-handler （处理全局异常捕获）</span><br><span class="line">- react-native-gesture-handler（处理手势操作）</span><br><span class="line">- react-native-svg（支持svg）</span><br></pre></td></tr></table></figure>
+<h2 id="原生支持"><a href="#原生支持" class="headerlink" title="原生支持"></a>原生支持</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 底层库支持（如：react-native-svg 需要 iOS RNSVGRect 库的支持）</span><br><span class="line">- 原生入口（View）</span><br><span class="line">- 原生Apis（通过 NativeModule 暴露给 React 可用的方法，如：UI、Bluetooth、Router、Business等）</span><br></pre></td></tr></table></figure>
+<h2 id="搭建开发环境"><a href="#搭建开发环境" class="headerlink" title="搭建开发环境"></a>搭建开发环境</h2><p>借助ReactNative的命令行工具（react-native-cli）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/** 安装 **/</span><br><span class="line">npm install -g yarn react-native-cli</span><br><span class="line">/** 初始化 **/</span><br><span class="line">react-native init</span><br><span class="line">/** 关联原生依赖（仅通过init初始化的官方模版有用） **/</span><br><span class="line">react-native link</span><br><span class="line">/** 运行 React 脚本 **/</span><br><span class="line">react-native start</span><br><span class="line">/** 在 iOS或Android 上运行 **/</span><br><span class="line">react-native run-ios/androd</span><br><span class="line">/** 打包 bundle 包 **/</span><br><span class="line">react-native bundle</span><br></pre></td></tr></table></figure></p>
+<h2 id="调试工具"><a href="#调试工具" class="headerlink" title="调试工具"></a>调试工具</h2><ul>
+<li>开发菜单 - 在真机中可通过摇晃手机调出（远程调试JS、热刷新、元素检查、性能检测）</li>
+<li>提示信息 - 应用内的错误与警告提示（红屏和黄屏）</li>
+<li>react-devtools</li>
+<li>在 Android Studio 或者 Xcode 中调试</li>
+</ul>
+<h2 id="组件封装"><a href="#组件封装" class="headerlink" title="组件封装"></a>组件封装</h2><ul>
+<li>NitButton - 按钮组件</li>
+<li>NitCell - 单元栏组件</li>
+<li>NitModal - 模态窗组件</li>
+<li>NitSlider - 滑动组件</li>
+<li>NitSwitch - 开关组件</li>
+<li>NitTextInput - 文本输入组件</li>
+<li>NitDashboard - 仪表盘组件</li>
+<li>NItColorPicker - 取色盘组件</li>
+</ul>
+<h2 id="全局方法封装"><a href="#全局方法封装" class="headerlink" title="全局方法封装"></a>全局方法封装</h2><ul>
+<li>$apis - 全局api方法</li>
+<li>$alert - alert框</li>
+<li>$toast - toast框</li>
+<li>$confirm - 确认弹框</li>
+<li>$configs - 全局配置</li>
+<li>$enums - 全局枚举</li>
+<li>$utils - 全局函数方法</li>
+</ul>
+<h2 id="蓝牙协议解析"><a href="#蓝牙协议解析" class="headerlink" title="蓝牙协议解析"></a>蓝牙协议解析</h2><h4 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h4><p>原生只提供基本蓝牙操作，比如搜索、读写等操作，把设备传递过来的十六进制串解析成对应的可用信息需要JS自己解析，这部分的解析需要根据设备厂商的解析规则进行解析。</p>
+<h4 id="固件升级"><a href="#固件升级" class="headerlink" title="固件升级"></a>固件升级</h4><p>通过指令组合和分段数据传输来完成一次完整的固件升级。</p>
+<h2 id="热更新机制"><a href="#热更新机制" class="headerlink" title="热更新机制"></a>热更新机制</h2><p>react-native-update</p>
+<p>对于ReactNative输出的bundle包，需要进行对应的版本管理，处理app版本与bundle包版本的对应关系，再由app进行本地bundle包版本检测与比对，从而实现热更新机制。</p>
+<h2 id="坑点"><a href="#坑点" class="headerlink" title="坑点"></a>坑点</h2><ul>
+<li>【react-native-cli】react-native link 对集成项目无效，只对标准项目生效（react-native init）</li>
+<li>【react-native】【Image】Image组件source属性如果是require本地图片，路径不能含变量，网络图片可以含变量拼接</li>
+<li>【resact-native】【NativeModules】通过NativeModules调用原生api，原生只能触发一次callback（进度相关的回调，只能使用事件监听的形式）</li>
+<li>【Android】【backHandler】官方提供的backHandler，return false的时候，仍需要自己处理返回</li>
+<li>【Android】【Text】嵌套使用Text组件的时候，子Text的opacity属性会继承父Text，修改无效</li>
+<li>【iOS】【TextInput】0.56.0版本不支持非英文输入（据说0.57.0已修复）</li>
+<li>【react-navigation】无法处理右滑手势的拦截，只能监听到路由退出</li>
+</ul>
+<h2 id="提问"><a href="#提问" class="headerlink" title="提问"></a>提问</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Q：页面开发难易度？</span><br><span class="line">A：如果是React框架使用者，可以很自然地使用ReactNative进行页面开发</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Q：官方组件与接口丰富度？</span><br><span class="line">A：官方提供37个基本组件与42个原生api接口</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Q：原生接口使用情况？</span><br><span class="line">A：原生接口可以直接使用，但是有部分接口需要配合事件监听使用</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Q：bundle稳定性？</span><br><span class="line">A：生产环境的bundle包是稳定的</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Q：终端差异性？</span><br><span class="line">A：有部分组件和接口，会因为终端不同而不同，比如：iOS设备是没有返回物理按键的</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/14/ReactNative-项目总结/" data-id="cjs41nrak0000563vnyl5k3zn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ReactNative/">ReactNative</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/07/03/非原生APP开发大杂烩/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">非原生APP开发大杂烩</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端技术/">前端技术</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/App/">App</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReactNative/">ReactNative</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scss/">Scss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Submodule/">Submodule</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode编辑器/">VSCode编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Variables/">Variables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/管理后台/">管理后台</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/App/" style="font-size: 10px;">App</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/ReactNative/" style="font-size: 10px;">ReactNative</a> <a href="/tags/Scss/" style="font-size: 10px;">Scss</a> <a href="/tags/Submodule/" style="font-size: 10px;">Submodule</a> <a href="/tags/VSCode编辑器/" style="font-size: 10px;">VSCode编辑器</a> <a href="/tags/Variables/" style="font-size: 10px;">Variables</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/管理后台/" style="font-size: 10px;">管理后台</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/02/14/ReactNative-项目总结/">ReactNative-项目总结</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/03/非原生APP开发大杂烩/">非原生APP开发大杂烩</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/27/在Vue中使用Scss全局变量/">在Vue中使用Scss全局变量</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/07/GitSubmodule子模块使用总结/">GitSubmodule子模块使用总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/25/基于Vue的管理后台搭建方案/">基于Vue的管理后台搭建方案</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Wilen<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
