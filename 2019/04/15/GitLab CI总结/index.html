@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>GitLab CI/CD 使用总结 | Duang·Duang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="概念持续集成（Continuous integration，简称CI） 频繁地将代码集成到主干。  持续交付（Continuous delivery，简称CD） 持续集成的下一步，频繁地将项目的最新版本，交付给QA团队审核。  持续部署（Continuous deployment，简称CD） 持续交付的下一步，代码通过审核后，自动部署到生产环境。  GitLab-RunnerInstall 根据官">
+<meta name="keywords" content="GitLab,持续集成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitLab CI&#x2F;CD 使用总结">
+<meta property="og:url" content="http://yoursite.com/2019/04/15/GitLab CI总结/index.html">
+<meta property="og:site_name" content="Duang·Duang">
+<meta property="og:description" content="概念持续集成（Continuous integration，简称CI） 频繁地将代码集成到主干。  持续交付（Continuous delivery，简称CD） 持续集成的下一步，频繁地将项目的最新版本，交付给QA团队审核。  持续部署（Continuous deployment，简称CD） 持续交付的下一步，代码通过审核后，自动部署到生产环境。  GitLab-RunnerInstall 根据官">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-15T09:43:13.228Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GitLab CI&#x2F;CD 使用总结">
+<meta name="twitter:description" content="概念持续集成（Continuous integration，简称CI） 频繁地将代码集成到主干。  持续交付（Continuous delivery，简称CD） 持续集成的下一步，频繁地将项目的最新版本，交付给QA团队审核。  持续部署（Continuous deployment，简称CD） 持续交付的下一步，代码通过审核后，自动部署到生产环境。  GitLab-RunnerInstall 根据官">
+  
+    <link rel="alternate" href="/atom.xml" title="Duang·Duang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Duang·Duang</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Wilen&#39;s Blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-GitLab CI总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/15/GitLab CI总结/" class="article-date">
+  <time datetime="2019-04-15T09:40:04.000Z" itemprop="datePublished">2019-04-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端技术/">前端技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      GitLab CI/CD 使用总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><h3 id="持续集成（Continuous-integration，简称CI）"><a href="#持续集成（Continuous-integration，简称CI）" class="headerlink" title="持续集成（Continuous integration，简称CI）"></a>持续集成（Continuous integration，简称CI）</h3><blockquote>
+<p>频繁地将代码集成到主干。</p>
+</blockquote>
+<h3 id="持续交付（Continuous-delivery，简称CD）"><a href="#持续交付（Continuous-delivery，简称CD）" class="headerlink" title="持续交付（Continuous delivery，简称CD）"></a>持续交付（Continuous delivery，简称CD）</h3><blockquote>
+<p>持续集成的下一步，频繁地将项目的最新版本，交付给QA团队审核。</p>
+</blockquote>
+<h3 id="持续部署（Continuous-deployment，简称CD）"><a href="#持续部署（Continuous-deployment，简称CD）" class="headerlink" title="持续部署（Continuous deployment，简称CD）"></a>持续部署（Continuous deployment，简称CD）</h3><blockquote>
+<p>持续交付的下一步，代码通过审核后，自动部署到生产环境。</p>
+</blockquote>
+<h1 id="GitLab-Runner"><a href="#GitLab-Runner" class="headerlink" title="GitLab-Runner"></a>GitLab-Runner</h1><h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><ul>
+<li>根据官方文档自行选择不同操作系统的安装方式 <a href="https://docs.gitlab.com/runner/install/" target="_blank" rel="noopener">runner install</a></li>
+</ul>
+<h3 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/** 查看服务状态 */</span><br><span class="line">gitlab-runner status</span><br><span class="line"></span><br><span class="line">/** 启动服务 */</span><br><span class="line">gitlab-runner start</span><br><span class="line"></span><br><span class="line">/** 停止服务 */</span><br><span class="line">gitlab-runner stop</span><br><span class="line"></span><br><span class="line">/** 重启服务 */</span><br><span class="line">gitlab-runner restart</span><br></pre></td></tr></table></figure>
+<h3 id="Runner"><a href="#Runner" class="headerlink" title="Runner"></a>Runner</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/** 查看当前 runner 列表 */</span><br><span class="line">gitlab-runner list</span><br><span class="line"></span><br><span class="line">/** 启动 runner */</span><br><span class="line">gitlab-runner run</span><br><span class="line"></span><br><span class="line">/** 注册 runner */</span><br><span class="line">gitlab-runner register</span><br><span class="line"></span><br><span class="line">/** 注销 runner */</span><br><span class="line">gitlab-runner unregister</span><br><span class="line"></span><br><span class="line">/** 校验 runner */</span><br><span class="line">gitlab-runner verify</span><br></pre></td></tr></table></figure>
+<h1 id="GitLab-CI-CD"><a href="#GitLab-CI-CD" class="headerlink" title="GitLab CI/CD"></a>GitLab CI/CD</h1><h2 id="All-Configuration-Reference"><a href="#All-Configuration-Reference" class="headerlink" title="All Configuration Reference"></a>All Configuration Reference</h2><ul>
+<li><a href="https://docs.gitlab.com/ee/ci/yaml/README.html" target="_blank" rel="noopener">链接</a></li>
+</ul>
+<h2 id="Something-Special"><a href="#Something-Special" class="headerlink" title="Something Special"></a>Something Special</h2><h3 id="Environments-and-deployments"><a href="#Environments-and-deployments" class="headerlink" title="Environments and deployments"></a>Environments and deployments</h3><h3 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h3><ul>
+<li>Predefined variables (Environment variables)</li>
+<li>.gitlab-ci.yml defined variables</li>
+<li>Secret variables</li>
+</ul>
+<h3 id="Artifacts"><a href="#Artifacts" class="headerlink" title="Artifacts"></a>Artifacts</h3><blockquote>
+<p>某个stage的产物，比如运行了打包并压缩出一个zip文件</p>
+</blockquote>
+<h3 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h3><blockquote>
+<p>download before the job and re-uoload after the job</p>
+</blockquote>
+<ul>
+<li>policy - pull/push</li>
+</ul>
+<h3 id="Tags"><a href="#Tags" class="headerlink" title="Tags"></a>Tags</h3><blockquote>
+<p>select specific Runners to run this project</p>
+</blockquote>
+<h3 id="Anchors"><a href="#Anchors" class="headerlink" title="Anchors"></a>Anchors</h3><blockquote>
+<p>Anchors can be used to duplicate/inherit properties, and is a perfect example to be used with hidden keys to provide templates for your jobs</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.job_template: &amp;job_definition  # Hidden key that defines an anchor named &apos;job_definition&apos;</span><br><span class="line">  image: ruby:2.1</span><br><span class="line">  services:</span><br><span class="line">    - postgres</span><br><span class="line">    - redis</span><br><span class="line"></span><br><span class="line">test1:</span><br><span class="line">  &lt;&lt;: *job_definition           # Merge the contents of the &apos;job_definition&apos; alias</span><br><span class="line">  script:</span><br><span class="line">    - test1 project</span><br><span class="line"></span><br><span class="line">test2:</span><br><span class="line">  &lt;&lt;: *job_definition           # Merge the contents of the &apos;job_definition&apos; alias</span><br><span class="line">  script:</span><br><span class="line">    - test2 project</span><br></pre></td></tr></table></figure>
+<h3 id="Pipelines-triggers"><a href="#Pipelines-triggers" class="headerlink" title="Pipelines triggers"></a>Pipelines triggers</h3><blockquote>
+<p>Trigger pipelines through the API.</p>
+</blockquote>
+<h3 id="Submodules"><a href="#Submodules" class="headerlink" title="Submodules"></a>Submodules</h3><h4 id="gitmodules-配置"><a href="#gitmodules-配置" class="headerlink" title=".gitmodules 配置"></a>.gitmodules 配置</h4><ul>
+<li>对于在同一个gitlab服务器的项目使用相对路径，ssh等可通用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[submodule &quot;project&quot;]</span><br><span class="line">    path = A/project</span><br><span class="line">    url = ../../project.git</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于不同gitlab服务器的项目是用完整的https路径，注意这要求gitlab-runner所在的机器有获取代码的权限</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[submodule &quot;project&quot;]</span><br><span class="line">    path = A/project</span><br><span class="line">    url = https://git@git-xxxx.xxxx.com/project.git</span><br></pre></td></tr></table></figure>
+<h4 id="gitlab-ci-yml-配置"><a href="#gitlab-ci-yml-配置" class="headerlink" title=".gitlab-ci.yml 配置"></a>.gitlab-ci.yml 配置</h4><ul>
+<li>gitlab-runner verison &gt; 1.1.0</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">variables:</span><br><span class="line">  // normal、recursive</span><br><span class="line">  GIT_SUBMODULE_STRATEGY: recursive</span><br></pre></td></tr></table></figure>
+<ul>
+<li>低版本</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">before_script:</span><br><span class="line">  - git submodule sync --recursive</span><br><span class="line">  - git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/15/GitLab CI总结/" data-id="cjy478xr60000x83vy418xia1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitLab/">GitLab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/持续集成/">持续集成</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/02/14/ReactNative-项目总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ReactNative-项目总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端技术/">前端技术</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/App/">App</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/">GitLab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReactNative/">ReactNative</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scss/">Scss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Submodule/">Submodule</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VSCode编辑器/">VSCode编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Variables/">Variables</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成/">持续集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/管理后台/">管理后台</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/App/" style="font-size: 10px;">App</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitLab/" style="font-size: 10px;">GitLab</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/ReactNative/" style="font-size: 10px;">ReactNative</a> <a href="/tags/Scss/" style="font-size: 10px;">Scss</a> <a href="/tags/Submodule/" style="font-size: 10px;">Submodule</a> <a href="/tags/VSCode编辑器/" style="font-size: 10px;">VSCode编辑器</a> <a href="/tags/Variables/" style="font-size: 10px;">Variables</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/管理后台/" style="font-size: 10px;">管理后台</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/15/GitLab CI总结/">GitLab CI/CD 使用总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/14/ReactNative-项目总结/">ReactNative-项目总结</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/03/非原生APP开发大杂烩/">非原生APP开发大杂烩</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/27/在Vue中使用Scss全局变量/">在Vue中使用Scss全局变量</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/07/GitSubmodule子模块使用总结/">GitSubmodule子模块使用总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Wilen<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
