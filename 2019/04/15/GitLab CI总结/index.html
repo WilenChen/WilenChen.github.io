@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Duang·Duang">
 <meta property="og:description" content="概念持续集成（Continuous integration，简称CI） 频繁地将代码集成到主干。  持续交付（Continuous delivery，简称CD） 持续集成的下一步，频繁地将项目的最新版本，交付给QA团队审核。  持续部署（Continuous deployment，简称CD） 持续交付的下一步，代码通过审核后，自动部署到生产环境。  GitLab-RunnerInstall 根据官">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-15T09:53:30.063Z">
+<meta property="og:updated_time" content="2019-07-16T14:32:46.638Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitLab CI&#x2F;CD 使用总结">
 <meta name="twitter:description" content="概念持续集成（Continuous integration，简称CI） 频繁地将代码集成到主干。  持续交付（Continuous delivery，简称CD） 持续集成的下一步，频繁地将项目的最新版本，交付给QA团队审核。  持续部署（Continuous deployment，简称CD） 持续交付的下一步，代码通过审核后，自动部署到生产环境。  GitLab-RunnerInstall 根据官">
@@ -95,15 +95,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><h3 id="持续集成（Continuous-integration，简称CI）"><a href="#持续集成（Continuous-integration，简称CI）" class="headerlink" title="持续集成（Continuous integration，简称CI）"></a>持续集成（Continuous integration，简称CI）</h3><blockquote>
-<p>频繁地将代码集成到主干。</p>
-</blockquote>
-<h3 id="持续交付（Continuous-delivery，简称CD）"><a href="#持续交付（Continuous-delivery，简称CD）" class="headerlink" title="持续交付（Continuous delivery，简称CD）"></a>持续交付（Continuous delivery，简称CD）</h3><blockquote>
-<p>持续集成的下一步，频繁地将项目的最新版本，交付给QA团队审核。</p>
-</blockquote>
-<h3 id="持续部署（Continuous-deployment，简称CD）"><a href="#持续部署（Continuous-deployment，简称CD）" class="headerlink" title="持续部署（Continuous deployment，简称CD）"></a>持续部署（Continuous deployment，简称CD）</h3><blockquote>
-<p>持续交付的下一步，代码通过审核后，自动部署到生产环境。</p>
-</blockquote>
+        <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><h3 id="持续集成（Continuous-integration，简称CI）"><a href="#持续集成（Continuous-integration，简称CI）" class="headerlink" title="持续集成（Continuous integration，简称CI）"></a>持续集成（Continuous integration，简称CI）</h3><ul>
+<li>频繁地将代码集成到主干。</li>
+</ul>
+<h3 id="持续交付（Continuous-delivery，简称CD）"><a href="#持续交付（Continuous-delivery，简称CD）" class="headerlink" title="持续交付（Continuous delivery，简称CD）"></a>持续交付（Continuous delivery，简称CD）</h3><ul>
+<li>持续集成的下一步，频繁地将项目的最新版本，交付给QA团队审核。</li>
+</ul>
+<h3 id="持续部署（Continuous-deployment，简称CD）"><a href="#持续部署（Continuous-deployment，简称CD）" class="headerlink" title="持续部署（Continuous deployment，简称CD）"></a>持续部署（Continuous deployment，简称CD）</h3><ul>
+<li>持续交付的下一步，代码通过审核后，自动部署到生产环境。</li>
+</ul>
 <h1 id="GitLab-Runner"><a href="#GitLab-Runner" class="headerlink" title="GitLab-Runner"></a>GitLab-Runner</h1><h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><ul>
 <li>根据官方文档自行选择不同操作系统的安装方式 <a href="https://docs.gitlab.com/runner/install/" target="_blank" rel="noopener">runner install</a></li>
 </ul>
@@ -117,25 +117,25 @@
 <li>.gitlab-ci.yml defined variables</li>
 <li>Secret variables</li>
 </ul>
-<h3 id="Artifacts"><a href="#Artifacts" class="headerlink" title="Artifacts"></a>Artifacts</h3><blockquote>
-<p>某个stage的产物，比如运行了打包并压缩出一个zip文件</p>
-</blockquote>
-<h3 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h3><blockquote>
-<p>download before the job and re-uoload after the job</p>
-</blockquote>
-<ul>
-<li>policy - pull/push</li>
+<h3 id="Artifacts"><a href="#Artifacts" class="headerlink" title="Artifacts"></a>Artifacts</h3><ul>
+<li>某个stage的产物，比如运行了打包并压缩出一个zip文件</li>
 </ul>
-<h3 id="Tags"><a href="#Tags" class="headerlink" title="Tags"></a>Tags</h3><blockquote>
-<p>select specific Runners to run this project</p>
-</blockquote>
-<h3 id="Anchors"><a href="#Anchors" class="headerlink" title="Anchors"></a>Anchors</h3><blockquote>
-<p>Anchors can be used to duplicate/inherit properties, and is a perfect example to be used with hidden keys to provide templates for your jobs</p>
-</blockquote>
+<h3 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h3><ul>
+<li><p>download before the job and re-uoload after the job</p>
+</li>
+<li><p>policy - pull/push</p>
+</li>
+</ul>
+<h3 id="Tags"><a href="#Tags" class="headerlink" title="Tags"></a>Tags</h3><ul>
+<li>select specific Runners to run this project</li>
+</ul>
+<h3 id="Anchors"><a href="#Anchors" class="headerlink" title="Anchors"></a>Anchors</h3><ul>
+<li>Anchors can be used to duplicate/inherit properties, and is a perfect example to be used with hidden keys to provide templates for your jobs</li>
+</ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.job_template: &amp;job_definition  # Hidden key that defines an anchor named &apos;job_definition&apos;</span><br><span class="line">  image: ruby:2.1</span><br><span class="line">  services:</span><br><span class="line">    - postgres</span><br><span class="line">    - redis</span><br><span class="line"></span><br><span class="line">test1:</span><br><span class="line">  &lt;&lt;: *job_definition           # Merge the contents of the &apos;job_definition&apos; alias</span><br><span class="line">  script:</span><br><span class="line">    - test1 project</span><br><span class="line"></span><br><span class="line">test2:</span><br><span class="line">  &lt;&lt;: *job_definition           # Merge the contents of the &apos;job_definition&apos; alias</span><br><span class="line">  script:</span><br><span class="line">    - test2 project</span><br></pre></td></tr></table></figure>
-<h3 id="Pipelines-triggers"><a href="#Pipelines-triggers" class="headerlink" title="Pipelines triggers"></a>Pipelines triggers</h3><blockquote>
-<p>Trigger pipelines through the API.</p>
-</blockquote>
+<h3 id="Pipelines-triggers"><a href="#Pipelines-triggers" class="headerlink" title="Pipelines triggers"></a>Pipelines triggers</h3><ul>
+<li>Trigger pipelines through the API.</li>
+</ul>
 <h3 id="Submodules"><a href="#Submodules" class="headerlink" title="Submodules"></a>Submodules</h3><h4 id="gitmodules-配置"><a href="#gitmodules-配置" class="headerlink" title=".gitmodules 配置"></a>.gitmodules 配置</h4><ul>
 <li>对于在同一个gitlab服务器的项目使用相对路径，ssh等可通用</li>
 </ul>
@@ -155,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/15/GitLab CI总结/" data-id="cjy47ni4x0000173vjd9bp3mg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/15/GitLab CI总结/" data-id="cjy5x2c9t0000kc3v0huxl1qj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitLab/">GitLab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/持续集成/">持续集成</a></li></ul>
